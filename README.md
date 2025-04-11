@@ -1,6 +1,6 @@
 # 🧪 AutomationExercise Playwright Tests
 
-This repository contains automated end-to-end test cases for [AutomationExercise.com](https://www.automationexercise.com/) using [Playwright] (https://playwright.dev/).  
+This repository contains automated end-to-end test cases for [AutomationExercise.com](https://www.automationexercise.com/) using Playwright (https://playwright.dev/).  
 The goal is to demonstrate modern UI test automation practices and enhance test coverage through real-world scenarios.
 
 # ✅ Test Coverage
