@@ -3,8 +3,6 @@ import { expect } from "@playwright/test";
 class RegistrationPage {
   constructor(page) {
     this.page = page;
-    this.homePageSlider = page.locator("#slider");
-    this.logInOrSignUp = page.locator("#header li:nth-child(4)");
     this.newUserSignUpText = page.locator("div[class='signup-form'] h2");
     this.nameInput = page.getByPlaceholder("Name");
     this.emailInput = page.getByTestId("signup-email");
@@ -34,20 +32,10 @@ class RegistrationPage {
     });
     this.accountCreatedText = page.locator("h2[class='title text-center'] b");
     this.continueButton = page.locator(".btn.btn-primary");
-    this.loggedInText = (username) =>
-      page.getByText(`Logged in as ${username}`);
     this.deleteAccount = page.locator("#header li:nth-child(5)");
     this.accountDeletedText = page.locator("h2[class='title text-center'] b");
-    this.loginEmail = page.getByTestId("login-email");
-    this.loginPassword = page.getByTestId("login-password");
-    this.loginButton = page.getByTestId("login-button");
-    this.logIntoAccountText = page.locator("div[class='login-form'] h2");
-    this.incorrectLoginError = page.getByText(
-      "Your email or password is incorrect!"
-    );
-    this.logOut = page.locator("#header li:nth-child(4)");
+
     this.emailExistsError = page.getByText("Email Address already exist!");
-    this.testCases = page.locator("#header li:nth-child(5)");
   }
 
   async signUp(username, email) {
@@ -96,16 +84,6 @@ class RegistrationPage {
     await this.mobileNumber.fill(phoneNumber);
 
     return username;
-  }
-
-  async isLoggedIn(username) {
-    const loggedInTextLocator = this.loggedInText(username);
-    await expect(loggedInTextLocator).toBeVisible(); // Verify it's visible
-  }
-
-  async logIn(email, password) {
-    await this.loginEmail.fill(email);
-    await this.loginPassword.fill(password);
   }
 }
 module.exports = { RegistrationPage };
