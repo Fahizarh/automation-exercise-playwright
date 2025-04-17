@@ -19,12 +19,19 @@ class ProductPage {
     this.searchProductInput = page.locator("#search_product");
     this.submitSearch = page.locator("#submit_search");
     this.searchedProductsText = page.locator(".title.text-center");
-    this.footer = page.locator("#footer");
-    this.subscriptionText = page.locator("div[class='single-widget'] h2");
-    this.subscribeEmail = page.locator("#susbscribe_email");
-    this.subscribeIcon = page.locator("#subscribe");
-    this.subscriptionSuccess = page.getByText(
-      "You have been successfully subscribed!"
+
+    this.firstProduct = page.locator(".product-overlay").first();
+    this.addFirstProductToCart = page
+      .locator(".overlay-content > .btn")
+      .first();
+    this.continueShopping = page.getByRole("button", {
+      name: "Continue Shopping",
+    });
+    this.secondProduct = page.locator(
+      "div:nth-child(4) > .product-image-wrapper > .single-products > .product-overlay"
+    );
+    this.addSecondProductToCart = page.locator(
+      "div:nth-child(4) > .product-image-wrapper > .single-products > .product-overlay > .overlay-content > .btn"
     );
   }
 
@@ -45,10 +52,13 @@ class ProductPage {
     await expect(this.productsList).toBeVisible();
   }
 
-  async subscribe(email) {
-    await this.subscribeEmail.fill(email);
-    await this.subscribeIcon.click();
-    await expect(this.subscriptionSuccess).toBeVisible();
+  async addFirstAndSecondProductToCart() {
+    await this.firstProduct.hover();
+    await this.addFirstProductToCart.click();
+    await this.continueShopping.click();
+
+    await this.secondProduct.hover();
+    await this.addSecondProductToCart.click();
   }
 }
 

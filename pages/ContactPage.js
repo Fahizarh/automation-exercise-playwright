@@ -19,7 +19,9 @@ class ContactPage {
     await this.subject.fill(subject);
     await this.message.fill(message);
     // Insert upload file here later
-    this.page.on("dialog", (dialog) => dialog.accept());
+    this.page.once("dialog", async (dialog) => {
+      await dialog.accept();
+    });
     await this.submitButton.click();
   }
 }

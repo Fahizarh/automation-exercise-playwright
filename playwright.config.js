@@ -10,6 +10,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: "html",
   timeout: 60_000,
+
   use: {
     baseURL: "https://automationexercise.com/",
     trace: "on-first-retry",
